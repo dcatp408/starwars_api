@@ -1,24 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import {BrowserRouter, Switch, Route } from "react-router-dom"
+import Form from './components/Form';
+import People from './components/People';
+import Error from './components/Error';
+import Planet from './components/Planet';
 
+
+
+const Home = (props) => {
+  return (
+    <Form />
+  )
+}
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <fieldset>
+        <legend>Starwars</legend>
+        <Form />
+        <hr />
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="/planet/:id">
+            <Planet />
+          </Route>
+          <Route path="/people/:id">
+            <People />
+          </Route>
+          <Route path="/error">
+            <Error />
+          </Route>
+        </Switch>
+      </fieldset>
+    
+    </BrowserRouter>
   );
 }
 
